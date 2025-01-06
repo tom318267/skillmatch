@@ -11,9 +11,18 @@ const JobsPage: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [expandedJobs, setExpandedJobs] = useState<string[]>([]);
 
   const category = searchParams.get("category");
   console.log("Category from URL:", category);
+
+  const toggleDescription = (jobId: string) => {
+    setExpandedJobs((prev) =>
+      prev.includes(jobId)
+        ? prev.filter((id) => id !== jobId)
+        : [...prev, jobId]
+    );
+  };
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -29,20 +38,22 @@ const JobsPage: React.FC = () => {
         // Handle different category name variations
         switch (searchCategory) {
           case "technology":
+          case "tech":
             searchCategory = "tech";
             break;
+          case "design":
           case "design & creative":
             searchCategory = "design";
             break;
+          case "marketing":
           case "marketing & sales":
             searchCategory = "marketing";
             break;
+          case "customer":
           case "customer service":
             searchCategory = "customer";
             break;
         }
-
-        console.log("Searching for category:", searchCategory); // Debug log
 
         const jobsRef = collection(db, "jobs");
         const q = query(jobsRef, where("category", "==", searchCategory));
@@ -92,18 +103,43 @@ const JobsPage: React.FC = () => {
           No jobs found in this category.
         </p>
       ) : (
-        <div className="grid gap-6">
+        <div className="space-y-4">
           {jobs.map((job) => (
-            <div
-              key={job.id}
-              className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
-            >
-              <h2 className="text-xl font-semibold">{job.title}</h2>
-              <p className="text-gray-600">{job.company}</p>
-              <p className="text-gray-500 mt-1">{job.location}</p>
-              <p className="mt-2">{job.description}</p>
-              <div className="mt-4">
-                <span className="text-blue-600">{job.salary}</span>
+            <div key={job.id} className="bg-white rounded-lg shadow p-6">
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="md:col-span-2">
+                  <h2 className="text-xl font-semibold mb-2">{job.title}</h2>
+                  <p className="text-gray-600 mb-2">
+                    {job.company} • {job.location}
+                  </p>
+                  <p className="text-gray-700">
+                    {expandedJobs.includes(job.id)
+                      ? job.description
+                      : `${job.description?.slice(0, 150)}...`}
+                  </p>
+                  <button
+                    onClick={() => toggleDescription(job.id)}
+                    className="text-blue-500 hover:text-blue-700 text-sm mt-2"
+                  >
+                    {expandedJobs.includes(job.id) ? "Show Less" : "Read More"}
+                  </button>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm border border-blue-500 text-blue-500 w-fit">
+                    {job.type ?? "Full-time"}
+                  </span>
+                  <span className="text-sm text-gray-500">
+                    Posted on: {new Date(job.postedDate).toLocaleDateString()}
+                  </span>
+                  <button
+                    onClick={() => {
+                      console.log(`Applied to job ${job.id}`);
+                    }}
+                    className="mt-auto bg-secondary hover:bg-[#24558a] text-white px-4 py-2 rounded transition-colors"
+                  >
+                    Apply Now
+                  </button>
+                </div>
               </div>
             </div>
           ))}

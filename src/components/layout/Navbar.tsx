@@ -1,33 +1,21 @@
 import React from "react";
-import { Link } from "react-scroll";
-import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { handleSignOut } from "../../utils/auth.ts";
 import { auth } from "../../config/firebase.ts";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { scroller } from "react-scroll";
+import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
-  const handleSectionNavigation = (section: string) => {
-    if (location.pathname !== "/") {
-      navigate(`/?section=${section}`); // Navigate to the homepage with query parameter
-    } else {
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }
-  };
-
   const onSignOut = async () => {
-    await handleSignOut(navigate);
+    try {
+      await handleSignOut(navigate);
+      toast.success("Successfully signed out!");
+    } catch (error) {
+      toast.error("Error signing out. Please try again.");
+    }
   };
 
   return (
@@ -48,82 +36,33 @@ const Navbar: React.FC = () => {
 
         {/* Links Section */}
         <div className="hidden md:flex space-x-14">
-          {isHomePage ? (
-            <>
-              <Link
-                to="home"
-                spy={true}
-                smooth={true}
-                duration={500}
-                offset={-70} // Adjust for fixed navbar
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                Home
-              </Link>
-              <Link
-                to="howItWorks"
-                spy={true}
-                smooth={true}
-                duration={500}
-                offset={-70}
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                How It Works
-              </Link>
-              <Link
-                to="categories"
-                spy={true}
-                smooth={true}
-                duration={500}
-                offset={-70}
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                Browse Jobs
-              </Link>
-              <Link
-                to="contact"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                Contact
-              </Link>
-            </>
-          ) : (
-            <>
-              <RouterLink
-                to="/"
-                onClick={() => handleSectionNavigation("home")}
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                Home
-              </RouterLink>
-              <RouterLink
-                to="/"
-                onClick={() => handleSectionNavigation("howItWorks")}
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                How It Works
-              </RouterLink>
+          <>
+            <RouterLink
+              to="/"
+              className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+            >
+              Home
+            </RouterLink>
 
-              <RouterLink
-                to="/"
-                onClick={() => handleSectionNavigation("categories")}
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                Browse Jobs
-              </RouterLink>
-              <RouterLink
-                to="/"
-                onClick={() => handleSectionNavigation("contact")}
-                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
-              >
-                Contact
-              </RouterLink>
-            </>
-          )}
+            <RouterLink
+              to="/jobs/all"
+              className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+            >
+              Browse Jobs
+            </RouterLink>
+            <RouterLink
+              to="/blogs"
+              className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+            >
+              Blogs
+            </RouterLink>
+            <RouterLink
+              to="/about"
+              className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+            >
+              About Us
+            </RouterLink>
+          </>
         </div>
 
         {/* Buttons Section */}

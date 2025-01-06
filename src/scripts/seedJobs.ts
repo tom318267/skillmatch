@@ -10,36 +10,41 @@ const sampleJobs = [
     title: "Senior UX Designer",
     company: "Design Co",
     category: "design",
-    description: "We're looking for a senior UX designer...",
+    description:
+      "We're looking for a senior UX designer to join our growing team. You'll be responsible for creating intuitive user experiences across our digital products, leading user research initiatives, and mentoring junior designers. The ideal candidate will have a strong portfolio demonstrating end-to-end design processes, experience with user testing methodologies, and the ability to translate complex problems into simple, elegant solutions. You'll work closely with product managers, developers, and stakeholders to ensure the highest quality user experience.",
     requirements: ["5+ years experience", "Figma proficiency"],
     salary: "$90,000 - $120,000",
     location: "Remote",
+    postedDate: "2024-03-15",
   },
   {
     title: "Frontend Developer",
     company: "Tech Corp",
     category: "tech",
-    description: "Frontend developer position...",
+    description:
+      "Join our frontend team in building responsive, performant web applications. You'll be working on our flagship product used by millions of users worldwide. We're seeking someone who's passionate about creating pixel-perfect interfaces and writing clean, maintainable code. You'll be involved in architectural decisions, implementing new features, and optimizing application performance. Experience with modern frontend testing frameworks and state management solutions is a plus.",
     requirements: ["React", "TypeScript"],
     salary: "$80,000 - $100,000",
     location: "New York",
+    postedDate: "2024-03-14",
   },
   {
     title: "Full Stack Engineer",
     company: "Growth Startup",
     category: "tech",
     description:
-      "Join our fast-paced team building scalable web applications...",
+      "Join our fast-paced team building scalable web applications. We're looking for a Full Stack Engineer who can handle everything from database design to frontend implementation. You'll be working on critical features that directly impact our user experience and business metrics. The ideal candidate will have experience with microservices architecture, API design, and modern frontend frameworks. You'll be involved in technical architecture decisions and have the opportunity to mentor junior developers.",
     requirements: ["Node.js", "React", "AWS", "MongoDB"],
     salary: "$100,000 - $140,000",
     location: "San Francisco",
+    postedDate: "2024-03-13",
   },
   {
     title: "Product Manager",
     company: "Innovation Labs",
     category: "product",
     description:
-      "Lead product strategy and development for our flagship product...",
+      "Lead product strategy and development for our flagship product. We're seeking a strategic thinker who can identify market opportunities, define product vision, and execute on roadmap initiatives. You'll work closely with engineering, design, and marketing teams to deliver features that delight our users. The role involves conducting market research, analyzing user feedback, and making data-driven decisions. You'll also be responsible for stakeholder communication and ensuring alignment across teams.",
     requirements: [
       "3+ years PM experience",
       "Agile certification",
@@ -47,171 +52,18 @@ const sampleJobs = [
     ],
     salary: "$110,000 - $150,000",
     location: "Boston",
+    postedDate: "2024-03-12",
   },
   {
     title: "DevOps Engineer",
     company: "Cloud Systems Inc",
     category: "tech",
     description:
-      "Managing cloud infrastructure and implementing CI/CD pipelines...",
+      "We're seeking a DevOps Engineer to help us build and maintain our cloud infrastructure. You'll be responsible for implementing CI/CD pipelines, managing cloud resources, and ensuring system reliability. The ideal candidate will have strong experience with container orchestration, infrastructure as code, and automated testing. You'll work on improving system observability, implementing security best practices, and optimizing cloud costs. Experience with multi-cloud environments is a plus.",
     requirements: ["Kubernetes", "Docker", "Jenkins", "AWS/Azure"],
     salary: "$95,000 - $130,000",
     location: "Remote",
-  },
-  {
-    title: "Data Scientist",
-    company: "Analytics Pro",
-    category: "data",
-    description:
-      "Develop machine learning models and analyze large datasets...",
-    requirements: ["Python", "SQL", "Machine Learning", "Statistics"],
-    salary: "$105,000 - $145,000",
-    location: "Seattle",
-  },
-  {
-    title: "UI Designer",
-    company: "Creative Agency",
-    category: "design",
-    description:
-      "Create beautiful and intuitive user interfaces for web and mobile...",
-    requirements: ["Adobe Creative Suite", "Sketch", "Portfolio required"],
-    salary: "$70,000 - $90,000",
-    location: "Los Angeles",
-  },
-  {
-    title: "Customer Service Representative",
-    company: "Support Solutions",
-    category: "customer-service",
-    description:
-      "Handle customer inquiries and provide exceptional support via phone and email...",
-    requirements: [
-      "1+ years customer service",
-      "Communication skills",
-      "Problem-solving ability",
-    ],
-    salary: "$35,000 - $45,000",
-    location: "Remote",
-  },
-  {
-    title: "Customer Success Manager",
-    company: "SaaS Solutions",
-    category: "customer-service",
-    description:
-      "Drive customer satisfaction and retention through proactive engagement...",
-    requirements: [
-      "3+ years in customer success",
-      "SaaS experience",
-      "Account management",
-    ],
-    salary: "$65,000 - $85,000",
-    location: "Chicago",
-  },
-  {
-    title: "Financial Analyst",
-    company: "Investment Group",
-    category: "finance",
-    description:
-      "Perform financial modeling and analysis to support investment decisions...",
-    requirements: [
-      "Bachelor's in Finance",
-      "Excel expertise",
-      "Financial modeling",
-    ],
-    salary: "$75,000 - $95,000",
-    location: "New York",
-  },
-  {
-    title: "Senior Accountant",
-    company: "Corporate Finance LLC",
-    category: "finance",
-    description:
-      "Manage monthly closing, financial reporting, and audit processes...",
-    requirements: ["CPA", "5+ years accounting experience", "Advanced Excel"],
-    salary: "$85,000 - $110,000",
-    location: "Boston",
-  },
-  {
-    title: "Registered Nurse",
-    company: "City General Hospital",
-    category: "healthcare",
-    description:
-      "Provide direct patient care in fast-paced hospital environment...",
-    requirements: ["RN license", "BLS certification", "2+ years experience"],
-    salary: "$70,000 - $90,000",
-    location: "Los Angeles",
-  },
-  {
-    title: "Healthcare Administrator",
-    company: "Medical Center Group",
-    category: "healthcare",
-    description:
-      "Oversee daily operations and staff management in healthcare facility...",
-    requirements: [
-      "Healthcare Administration degree",
-      "5+ years management",
-      "EMR systems",
-    ],
-    salary: "$95,000 - $120,000",
-    location: "Houston",
-  },
-  {
-    title: "Digital Marketing Manager",
-    company: "Growth Marketing Inc",
-    category: "marketing",
-    description:
-      "Lead digital marketing strategies across multiple channels including social media, email, and PPC campaigns...",
-    requirements: [
-      "5+ years digital marketing",
-      "Google Analytics",
-      "Meta Ads",
-      "Email marketing",
-    ],
-    salary: "$75,000 - $95,000",
-    location: "Chicago",
-  },
-  {
-    title: "Content Marketing Specialist",
-    company: "Content Solutions",
-    category: "marketing",
-    description:
-      "Create engaging content across various formats including blog posts, whitepapers, and social media content...",
-    requirements: [
-      "3+ years content creation",
-      "SEO knowledge",
-      "Strong writing skills",
-    ],
-    salary: "$55,000 - $70,000",
-    location: "Remote",
-  },
-  {
-    title: "Social Media Manager",
-    company: "Brand Builders",
-    category: "marketing",
-    description:
-      "Develop and execute social media strategies to increase brand awareness and engagement across platforms...",
-    requirements: [
-      "Social media management",
-      "Content creation",
-      "Analytics tools",
-      "Scheduling tools",
-    ],
-    salary: "$50,000 - $65,000",
-    location: "Miami",
-  },
-  {
-    title: "Marketing Analytics Manager",
-    company: "Data Driven Marketing",
-    category: "marketing",
-    description:
-      "Lead data-driven marketing decisions through comprehensive analytics and reporting across all marketing channels...",
-    requirements: [
-      "Google Analytics",
-      "SQL",
-      "Data visualization",
-      "Statistical analysis",
-    ],
-    salary: "$85,000 - $110,000",
-    location: "San Francisco",
+    postedDate: "2024-03-11",
   },
 ];
 

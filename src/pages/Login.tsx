@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase.ts";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-hot-toast";
@@ -59,11 +59,6 @@ const Login: React.FC = () => {
     } finally {
       toast.dismiss(loadingToast);
     }
-  };
-
-  const handleHowItWorksClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigate("/?section=how-it-works");
   };
 
   return (
@@ -184,16 +179,6 @@ const Login: React.FC = () => {
             </button>
           </div>
         </form>
-
-        <div className="text-center mt-4">
-          <a
-            href="#"
-            onClick={handleHowItWorksClick}
-            className="text-sm text-secondary hover:text-secondary-dark"
-          >
-            How it works
-          </a>
-        </div>
       </div>
     </div>
   );

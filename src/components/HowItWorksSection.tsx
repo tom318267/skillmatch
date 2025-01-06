@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
+import React from "react";
 
 const HowItWorksSection: React.FC = () => {
   return (

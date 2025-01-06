@@ -10,6 +10,8 @@ export interface Job {
   requirements: string[];
   salary: string;
   location: string;
+  type: string;
+  postedDate: string | number;
 }
 
 export const fetchJobsByCategory = async (category: string): Promise<Job[]> => {
