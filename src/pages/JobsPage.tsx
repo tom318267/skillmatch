@@ -14,7 +14,6 @@ const JobsPage: React.FC = () => {
   const [expandedJobs, setExpandedJobs] = useState<string[]>([]);
 
   const category = searchParams.get("category");
-  console.log("Category from URL:", category);
 
   const toggleDescription = (jobId: string) => {
     setExpandedJobs((prev) =>
@@ -23,6 +22,10 @@ const JobsPage: React.FC = () => {
         : [...prev, jobId]
     );
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -40,6 +43,10 @@ const JobsPage: React.FC = () => {
           case "technology":
           case "tech":
             searchCategory = "tech";
+            break;
+          case "healthcare":
+          case "health":
+            searchCategory = "health";
             break;
           case "design":
           case "design & creative":

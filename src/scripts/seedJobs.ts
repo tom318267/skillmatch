@@ -65,6 +65,77 @@ const sampleJobs = [
     location: "Remote",
     postedDate: "2024-03-11",
   },
+  {
+    title: "Registered Nurse",
+    company: "City General Hospital",
+    category: "health",
+    description:
+      "Seeking a compassionate RN to join our emergency department team. You'll provide direct patient care, coordinate with medical staff, and ensure high-quality healthcare delivery. The ideal candidate will have strong clinical skills, excellent communication abilities, and experience in fast-paced healthcare environments.",
+    requirements: ["RN License", "BLS Certification", "2+ years experience"],
+    salary: "$75,000 - $95,000",
+    location: "Chicago",
+    postedDate: "2024-03-10",
+  },
+  {
+    title: "Marketing Manager",
+    company: "Brand Solutions",
+    category: "marketing",
+    description:
+      "Lead our digital marketing initiatives across multiple channels. You'll develop marketing strategies, manage campaigns, and analyze performance metrics. The role involves coordinating with creative teams, managing social media presence, and optimizing conversion rates.",
+    requirements: [
+      "5+ years marketing experience",
+      "Google Analytics",
+      "SEO expertise",
+    ],
+    salary: "$85,000 - $115,000",
+    location: "Austin",
+    postedDate: "2024-03-09",
+  },
+  {
+    title: "Customer Success Manager",
+    company: "SaaS Solutions",
+    category: "customer-service",
+    description:
+      "Drive customer satisfaction and retention through proactive relationship management. You'll onboard new clients, provide product training, and identify growth opportunities. The ideal candidate will have experience in SaaS customer success and strong problem-solving abilities.",
+    requirements: [
+      "3+ years in customer success",
+      "CRM experience",
+      "Project management",
+    ],
+    salary: "$70,000 - $90,000",
+    location: "Remote",
+    postedDate: "2024-03-08",
+  },
+  {
+    title: "Healthcare Administrator",
+    company: "Medical Group Network",
+    category: "health",
+    description:
+      "Oversee daily operations of our medical facility. You'll manage staff schedules, ensure compliance with healthcare regulations, and optimize patient care processes. Experience with healthcare management systems and insurance billing required.",
+    requirements: [
+      "Healthcare Administration degree",
+      "5+ years experience",
+      "EMR systems",
+    ],
+    salary: "$80,000 - $110,000",
+    location: "Miami",
+    postedDate: "2024-03-07",
+  },
+  {
+    title: "Social Media Specialist",
+    company: "Digital Trends Agency",
+    category: "marketing",
+    description:
+      "Create and manage engaging social media content across multiple platforms. You'll develop content calendars, analyze metrics, and collaborate with clients to achieve their social media goals. Experience with paid social advertising and content creation tools required.",
+    requirements: [
+      "3+ years social media management",
+      "Adobe Creative Suite",
+      "Paid social experience",
+    ],
+    salary: "$55,000 - $75,000",
+    location: "Los Angeles",
+    postedDate: "2024-03-06",
+  },
 ];
 
 const seedJobs = async () => {

@@ -17,6 +17,7 @@ import { AuthProvider } from "./contexts/AuthContext.tsx";
 import JobsPage from "./pages/JobsPage.tsx";
 import { Toaster } from "react-hot-toast";
 import MainJobsPage from "./pages/MainJobsPage.tsx";
+import BlogsPage from "./pages/BlogsPage.tsx";
 
 const App: React.FC = () => {
   const location = useLocation(); // Only available inside BrowserRouter
@@ -45,6 +46,8 @@ const App: React.FC = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/jobs/all" element={<MainJobsPage />} />
+            <Route path="/blogs" element={<BlogsPage />} />
+
             {/* Redirect to homepage sections */}
             <Route
               path="/blogs"

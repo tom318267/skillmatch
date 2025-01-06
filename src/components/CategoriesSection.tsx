@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const categories = [
@@ -44,10 +43,6 @@ const categories = [
 const CategoriesSection: React.FC = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    AOS.refresh();
-  }, []);
-
   const handleCategoryClick = (category: string) => {
     navigate(`/jobs?category=${encodeURIComponent(category)}`);
   };
@@ -63,7 +58,6 @@ const CategoriesSection: React.FC = () => {
         </h2>
         <p
           data-aos="fade-up"
-          data-aos-delay="100"
           className="text-gray-600 mb-20 max-w-2xl mx-auto text-lg mt-8"
         >
           Discover opportunities across various industries and find your perfect
@@ -71,30 +65,28 @@ const CategoriesSection: React.FC = () => {
           align with your skills and interests.
         </p>
 
-        {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((category, index) => (
             <div
-              key={index}
-              data-aos="flip-left"
-              data-aos-duration="800"
-              data-aos-delay={100 * index}
+              key={category.title}
+              data-aos="fade-up"
+              data-aos-delay={String(index * 100)}
               onClick={() => handleCategoryClick(category.title)}
               className="bg-white h-[373px] rounded-lg p-6 flex flex-col items-center justify-center 
               transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl
               cursor-pointer"
             >
-              {/* Icon */}
               <img
                 src={category.icon}
                 alt={category.title}
                 className="w-[102px] h-auto mb-4"
+                loading="lazy"
+                width="102"
+                height="102"
               />
-              {/* Title */}
               <h3 className="text-[32px] font-medium text-primary mb-2 w-[290px] capitalize">
                 {category.title}
               </h3>
-              {/* Description */}
               <p className="text-gray-500 text-center w-[290px]">
                 {category.description}
               </p>
