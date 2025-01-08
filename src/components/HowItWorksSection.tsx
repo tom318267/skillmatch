@@ -33,7 +33,7 @@ const HowItWorksSection: React.FC = () => {
       <div className="container mx-auto text-center">
         <h2
           data-aos="fade-up"
-          className="text-2xl md:text-[50px] font-semibold text-primary"
+          className="text-4xl md:text-[50px] font-semibold text-primary"
         >
           How SkillMatch Works
         </h2>

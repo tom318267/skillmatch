@@ -44,6 +44,15 @@ const Navbar: React.FC = () => {
               Home
             </RouterLink>
 
+            {user && (
+              <RouterLink
+                to="/dashboard"
+                className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
+              >
+                Dashboard
+              </RouterLink>
+            )}
+
             <RouterLink
               to="/jobs/all"
               className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
@@ -57,7 +66,7 @@ const Navbar: React.FC = () => {
               Blogs
             </RouterLink>
             <RouterLink
-              to="/about"
+              to="/about-us"
               className="text-base font-medium text-primary transition relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full cursor-pointer"
             >
               About Us

@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
           data-aos-duration="1000"
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-[50px] font-semibold">
+          <h2 className="text-4xl md:text-[50px] font-semibold text-primary">
             Let's{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Connect
@@ -107,7 +107,7 @@ const Contact: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-4 px-6 border border-transparent rounded-lg shadow-md text-md font-medium text-white bg-secondary  hover:bg-[#24558a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-all duration-200 hover:shadow-lg hover:scale-[1.02]"
+                className="w-full flex justify-center py-4 px-6 border border-transparent rounded-lg shadow-md text-md font-medium text-white bg-secondary  hover:bg-[#24558a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary"
               >
                 Send Message
               </button>

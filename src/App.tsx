@@ -17,7 +17,9 @@ import { AuthProvider } from "./contexts/AuthContext.tsx";
 import JobsPage from "./pages/JobsPage.tsx";
 import { Toaster } from "react-hot-toast";
 import MainJobsPage from "./pages/MainJobsPage.tsx";
-import BlogsPage from "./pages/BlogsPage.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
+import Blogs from "./pages/Blogs.tsx";
+import AboutUs from "./pages/AboutUs.tsx";
 
 const App: React.FC = () => {
   const location = useLocation(); // Only available inside BrowserRouter
@@ -46,7 +48,8 @@ const App: React.FC = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/jobs/all" element={<MainJobsPage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/dashboard" element={<Dashboard />} />
 
             {/* Redirect to homepage sections */}
             <Route
@@ -61,6 +64,7 @@ const App: React.FC = () => {
               path="/categories"
               element={<Navigate to="/?section=categories" replace />}
             />
+            <Route path="/about-us" element={<AboutUs />} />
           </Routes>
           <Footer />
         </div>

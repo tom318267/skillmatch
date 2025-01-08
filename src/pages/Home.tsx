@@ -69,7 +69,7 @@ const Home: React.FC = () => {
                 placeholder="Search by location"
                 className="px-4 py-3 w-full md:w-2/5 rounded border text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <button className="px-6 py-3 bg-primary text-white font-semibold rounded transition hover:outline hover:outline-1 hover:outline-white">
+              <button className="px-6 py-3 bg-primary text-white font-medium rounded transition hover:outline hover:outline-1 hover:outline-white">
                 Search
               </button>
             </motion.div>

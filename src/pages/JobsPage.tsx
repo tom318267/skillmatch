@@ -94,9 +94,11 @@ const JobsPage: React.FC = () => {
           onClick={() => navigate("/")}
           className="mr-4 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
         >
-          ← Back
+          ← Back to Home
         </button>
-        <h1 className="text-3xl font-semibold capitalize">{category} Jobs</h1>
+        <h1 className="text-3xl font-semibold capitalize text-primary">
+          {category} Jobs
+        </h1>
       </div>
 
       {loading ? (
@@ -126,13 +128,13 @@ const JobsPage: React.FC = () => {
                   </p>
                   <button
                     onClick={() => toggleDescription(job.id)}
-                    className="text-blue-500 hover:text-blue-700 text-sm mt-2"
+                    className="text-secondary font-semibold hover:text-[#24558a] text-sm mt-2"
                   >
                     {expandedJobs.includes(job.id) ? "Show Less" : "Read More"}
                   </button>
                 </div>
                 <div className="flex flex-col gap-3">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm border border-blue-500 text-blue-500 w-fit">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm border border-secondary text-secondary w-fit">
                     {job.type ?? "Full-time"}
                   </span>
                   <span className="text-sm text-gray-500">
@@ -142,7 +144,7 @@ const JobsPage: React.FC = () => {
                     onClick={() => {
                       console.log(`Applied to job ${job.id}`);
                     }}
-                    className="mt-auto bg-secondary hover:bg-[#24558a] text-white px-4 py-2 rounded transition-colors"
+                    className="mt-auto bg-secondary hover:bg-[#24558a] text-white font-medium px-4 py-2 rounded transition-colors"
                   >
                     Apply Now
                   </button>

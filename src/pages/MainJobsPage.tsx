@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Job } from "../services/jobService.ts";
-import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase.ts";
 
 const MainJobsPage: React.FC = () => {
-  const navigate = useNavigate();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -46,8 +44,10 @@ const MainJobsPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-semibold mb-6">Available Jobs</h1>
+    <div className="container mx-auto py-8">
+      <div className="flex items-center mb-6">
+        <h1 className="text-4xl font-semibold text-primary">Browse Jobs</h1>
+      </div>
 
       {loading ? (
         <div className="flex justify-center items-center h-32">
@@ -76,13 +76,13 @@ const MainJobsPage: React.FC = () => {
                   </p>
                   <button
                     onClick={() => toggleDescription(job.id)}
-                    className="text-blue-500 hover:text-blue-700 text-sm mt-2"
+                    className="text-secondary font-semibold hover:text-[#24558a] text-sm mt-2"
                   >
                     {expandedJobs.includes(job.id) ? "Show Less" : "Read More"}
                   </button>
                 </div>
                 <div className="flex flex-col gap-3">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm border border-blue-500 text-blue-500 w-fit">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm border border-secondary text-secondary w-fit">
                     {job.type ?? "Full-time"}
                   </span>
                   <span className="text-sm text-gray-500">
@@ -92,7 +92,7 @@ const MainJobsPage: React.FC = () => {
                     onClick={() => {
                       console.log(`Applied to job ${job.id}`);
                     }}
-                    className="mt-auto bg-secondary hover:bg-[#24558a] text-white px-4 py-2 rounded transition-colors"
+                    className="mt-auto bg-secondary font-medium hover:bg-[#24558a] text-white px-4 py-2 rounded transition-colors"
                   >
                     Apply Now
                   </button>
