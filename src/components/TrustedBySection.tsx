@@ -1,9 +1,8 @@
 import React from "react";
-import AOS from "aos";
 
 const TrustedBySection: React.FC = () => {
   return (
-    <section className="bg-primary text-white py-[148px]">
+    <section className="bg-primary text-white py-[148px] px-6 sm:px-0">
       <div className="container mx-auto text-center">
         <h2
           className="text-xl font-medium mb-[75px]"
@@ -13,7 +12,7 @@ const TrustedBySection: React.FC = () => {
           Trusted by 100+ world's best companies
         </h2>
 
-        <div className="flex flex-wrap justify-between items-center gap-8">
+        <div className="flex flex-wrap justify-center sm:justify-between items-center gap-8">
           {[
             { src: "/images/coinbase.svg", alt: "Coinbase", delay: "100" },
             { src: "/images/amazon.svg", alt: "Amazon", delay: "200" },

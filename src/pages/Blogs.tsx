@@ -40,22 +40,26 @@ const Blogs: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex justify-center items-center h-32">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <section className="container mx-auto py-8">
-      <h1 className="text-4xl font-semibold text-primary">Our Blogs</h1>
-      <p className="text-gray-600 text-lg mb-8">
-        Insights, updates, and stories from our team
-      </p>
+    <main className="container mx-auto py-8 px-6 sm:px-0">
+      <header className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-semibold text-primary mb-2">
+          Our Blogs
+        </h1>
+        <p className="text-gray-600 text-lg">
+          Insights, updates, and stories from our team
+        </p>
+      </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogPosts.map((post) => (
           <article
             key={post.id}
@@ -94,8 +98,8 @@ const Blogs: React.FC = () => {
             </Link>
           </article>
         ))}
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

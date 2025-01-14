@@ -48,9 +48,13 @@ const CategoriesSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-category bg-cover bg-center py-[148px]">
+    <section
+      className="bg-category bg-cover bg-center py-[148px] px-6 sm:px-0"
+      aria-labelledby="categories-heading"
+    >
       <div className="container mx-auto text-center">
         <h2
+          id="categories-heading"
           data-aos="fade-up"
           className="text-4xl md:text-[50px] font-semibold text-primary"
         >

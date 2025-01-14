@@ -26,7 +26,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <section className="min-h-screen">
+    <main className="min-h-screen px-6 sm:px-0">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -190,7 +190,7 @@ const AboutUs = () => {
           See open positions →
         </motion.button>
       </motion.div>
-    </section>
+    </main>
   );
 };
 

@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Home from "./pages/Home.tsx";
@@ -20,9 +14,10 @@ import MainJobsPage from "./pages/MainJobsPage.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import Blogs from "./pages/Blogs.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
+import JobsSearchResults from "./pages/JobsSearchResults.tsx";
 
 const App: React.FC = () => {
-  const location = useLocation(); // Only available inside BrowserRouter
+  const location = useLocation();
 
   useEffect(() => {
     AOS.init({
@@ -46,24 +41,11 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/jobs/search" element={<JobsSearchResults />} />
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/jobs/all" element={<MainJobsPage />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/dashboard" element={<Dashboard />} />
-
-            {/* Redirect to homepage sections */}
-            <Route
-              path="/blogs"
-              element={<Navigate to="/?section=blogs" replace />}
-            />
-            <Route
-              path="/how-it-works"
-              element={<Navigate to="/?section=how-it-works" replace />}
-            />
-            <Route
-              path="/categories"
-              element={<Navigate to="/?section=categories" replace />}
-            />
             <Route path="/about-us" element={<AboutUs />} />
           </Routes>
           <Footer />

@@ -26,17 +26,15 @@ const Dashboard = () => {
   ];
 
   return (
-    <section className="min-h-screen py-8">
-      {/* Header */}
-      <div className="mb-8 container mx-auto">
-        <h1 className="text-4xl font-semibold text-primary">Dashboard</h1>
+    <main className="min-h-screen py-8">
+      <header className="mb-8 container mx-auto">
+        <h1 className="text-4xl font-semibold text-primary mb-2">Dashboard</h1>
         <p className="text-gray-600 text-lg">
           Track your job postings and candidate activity
         </p>
-      </div>
+      </header>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 container mx-auto">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 container mx-auto">
         {/* Stats Card 1 */}
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center">
@@ -104,10 +102,9 @@ const Dashboard = () => {
             <span>5 this week</span>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 container mx-auto">
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 container mx-auto">
         {/* Chart Section */}
         <div className="lg:col-span-2 bg-white rounded-lg shadow p-6">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">
@@ -154,8 +151,8 @@ const Dashboard = () => {
             View all applications →
           </button>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

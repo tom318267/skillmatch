@@ -96,22 +96,21 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
-        {/* Header */}
-        <div>
+        <header>
           <img
             src="/images/skillmatchlogo.svg"
             alt="SkillMatch Logo"
             className="mx-auto h-20 w-auto"
           />
-          <h2 className="mt-6 text-center text-3xl font-semibold text-gray-900">
+          <h1 className="mt-6 text-center text-3xl font-semibold text-gray-900">
             Create your account
-          </h2>
+          </h1>
           <p className="mt-2 text-center text-sm text-gray-600">
             Join SkillMatch today
           </p>
-        </div>
+        </header>
 
         {/* Form */}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -231,7 +230,7 @@ const Signup: React.FC = () => {
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 };
 

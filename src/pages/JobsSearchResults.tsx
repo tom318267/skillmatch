@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Job } from "../services/jobService.ts";
-import { useNavigate } from "react-router-dom";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase.ts";
 
-const JobsPage: React.FC = () => {
+interface Job {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  salary?: string;
+  category?: string;
+  requirements?: string[];
+  postedDate: string;
+  type?: string;
+  createdAt?: Date;
+}
+
+const JobSearchResults: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -13,7 +25,62 @@ const JobsPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [expandedJobs, setExpandedJobs] = useState<string[]>([]);
 
-  const category = searchParams.get("category");
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+
+    const fetchJobs = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const jobQuery = searchParams.get("q") || "";
+        const locationQuery = searchParams.get("location") || "";
+
+        const jobsRef = collection(db, "jobs");
+        const querySnapshot = await getDocs(query(jobsRef));
+
+        let filteredJobs = querySnapshot.docs.map(
+          (doc) =>
+            ({
+              id: doc.id,
+              ...doc.data(),
+            } as Job)
+        );
+
+        if (jobQuery) {
+          const searchTerm = jobQuery.toLowerCase();
+          filteredJobs = filteredJobs.filter((job) => {
+            const matches =
+              job.title?.toLowerCase().includes(searchTerm) ||
+              job.description?.toLowerCase().includes(searchTerm) ||
+              job.category?.toLowerCase().includes(searchTerm);
+            return matches;
+          });
+        }
+
+        if (locationQuery) {
+          const locationTerm = locationQuery.toLowerCase();
+          filteredJobs = filteredJobs.filter((job) =>
+            job.location?.toLowerCase().includes(locationTerm)
+          );
+        }
+
+        const jobsData = filteredJobs.map((job) => ({
+          ...job,
+          createdAt: job.postedDate ? new Date(job.postedDate) : new Date(),
+        }));
+
+        setJobs(jobsData);
+      } catch (err) {
+        console.error("Error fetching jobs:", err);
+        setError("Failed to fetch jobs. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, [searchParams]);
 
   const toggleDescription = (jobId: string) => {
     setExpandedJobs((prev) =>
@@ -23,72 +90,8 @@ const JobsPage: React.FC = () => {
     );
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const fetchJobs = async () => {
-      if (!category) return;
-
-      try {
-        setLoading(true);
-        setError(null);
-
-        // Normalize the category name
-        let searchCategory = category.toLowerCase();
-
-        // Handle different category name variations
-        switch (searchCategory) {
-          case "technology":
-          case "tech":
-            searchCategory = "tech";
-            break;
-          case "healthcare":
-          case "health":
-            searchCategory = "health";
-            break;
-          case "design":
-          case "design & creative":
-            searchCategory = "design";
-            break;
-          case "marketing":
-          case "marketing & sales":
-            searchCategory = "marketing";
-            break;
-          case "customer":
-          case "customer service":
-            searchCategory = "customer";
-            break;
-        }
-
-        const jobsRef = collection(db, "jobs");
-        const q = query(jobsRef, where("category", "==", searchCategory));
-        const querySnapshot = await getDocs(q);
-
-        const jobsData = querySnapshot.docs.map((doc) => {
-          const data = doc.data();
-          console.log("Found job:", data); // Debug log
-          return {
-            id: doc.id,
-            ...data,
-          };
-        }) as Job[];
-
-        setJobs(jobsData);
-      } catch (err) {
-        setError("Failed to load jobs. Please try again later.");
-        console.error("Error loading jobs:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, [category]);
-
   return (
-    <main className="container mx-auto py-8 px-4">
+    <main className="container mx-auto py-8 px-6 md:px-4">
       <div className="flex items-center mb-6">
         <button
           onClick={() => navigate("/")}
@@ -96,8 +99,8 @@ const JobsPage: React.FC = () => {
         >
           ← Back to Home
         </button>
-        <h1 className="text-3xl font-semibold capitalize text-primary">
-          {category} Jobs
+        <h1 className="text-3xl md:text-4xl font-semibold text-primary">
+          Search Results
         </h1>
       </div>
 
@@ -109,12 +112,12 @@ const JobsPage: React.FC = () => {
         <div className="text-red-500 text-center p-4">{error}</div>
       ) : jobs.length === 0 ? (
         <p className="text-center text-gray-600">
-          No jobs found in this category.
+          No jobs found matching your search criteria.
         </p>
       ) : (
-        <div className="space-y-4">
+        <section className="space-y-4">
           {jobs.map((job) => (
-            <div key={job.id} className="bg-white rounded-lg shadow p-6">
+            <article key={job.id} className="bg-white rounded-lg shadow p-6">
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="md:col-span-2">
                   <h2 className="text-xl font-semibold mb-2">{job.title}</h2>
@@ -138,24 +141,22 @@ const JobsPage: React.FC = () => {
                     {job.type ?? "Full-time"}
                   </span>
                   <span className="text-sm text-gray-500">
-                    Posted on: {new Date(job.postedDate).toLocaleDateString()}
+                    Posted on: {job.createdAt?.toLocaleDateString()}
                   </span>
                   <button
-                    onClick={() => {
-                      console.log(`Applied to job ${job.id}`);
-                    }}
-                    className="mt-auto bg-secondary hover:bg-[#24558a] text-white font-medium px-4 py-2 rounded transition-colors"
+                    onClick={() => navigate(`/jobs/${job.id}`)}
+                    className="mt-auto bg-secondary font-medium hover:bg-[#24558a] text-white px-4 py-2 rounded transition-colors"
                   >
                     Apply Now
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
-        </div>
+        </section>
       )}
     </main>
   );
 };
 
-export default JobsPage;
+export default JobSearchResults;

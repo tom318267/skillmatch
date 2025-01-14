@@ -44,10 +44,12 @@ const MainJobsPage: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="flex items-center mb-6">
-        <h1 className="text-4xl font-semibold text-primary">Browse Jobs</h1>
-      </div>
+    <main className="container mx-auto py-8 px-6 md:px-4">
+      <header className="flex items-center mb-6">
+        <h1 className="text-3xl md:text-4xl font-semibold text-primary">
+          Browse Jobs
+        </h1>
+      </header>
 
       {loading ? (
         <div className="flex justify-center items-center h-32">
@@ -60,9 +62,9 @@ const MainJobsPage: React.FC = () => {
           No jobs available at the moment.
         </p>
       ) : (
-        <div className="space-y-4">
+        <section className="space-y-4">
           {jobs.map((job) => (
-            <div key={job.id} className="bg-white rounded-lg shadow p-6">
+            <article key={job.id} className="bg-white rounded-lg shadow p-6">
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="md:col-span-2">
                   <h2 className="text-xl font-semibold mb-2">{job.title}</h2>
@@ -98,11 +100,11 @@ const MainJobsPage: React.FC = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
-        </div>
+        </section>
       )}
-    </div>
+    </main>
   );
 };
 

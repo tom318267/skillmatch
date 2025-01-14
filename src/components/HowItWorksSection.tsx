@@ -29,7 +29,7 @@ const HowItWorksSection: React.FC = () => {
   ];
 
   return (
-    <section id="howItWorks" className="bg-white py-[148px]">
+    <section id="howItWorks" className="bg-white py-[148px] px-6 sm:px-0">
       <div className="container mx-auto text-center">
         <h2
           data-aos="fade-up"
@@ -57,7 +57,7 @@ const HowItWorksSection: React.FC = () => {
               <img
                 src={step.img}
                 alt={step.alt}
-                className="w-52 h-52 mb-6"
+                className="w-40 md:w-52 h-52 mb-6"
                 loading="lazy"
                 width="208"
                 height="208"

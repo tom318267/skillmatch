@@ -1,15 +1,52 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams, useNavigate } from "react-router-dom";
 import { Element } from "react-scroll";
 import TrustedBySection from "../components/TrustedBySection.tsx";
 import HowItWorksSection from "../components/HowItWorksSection.tsx";
 import CategoriesSection from "../components/CategoriesSection.tsx";
 import ContactSection from "../components/ContactSection.tsx";
+import { collection, query, where } from "firebase/firestore";
+import { db } from "../config/firebase.ts";
 
 const Home: React.FC = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const [jobQuery, setJobQuery] = React.useState("");
+  const [locationQuery, setLocationQuery] = React.useState("");
+  const [isSearching, setIsSearching] = React.useState(false);
+
+  const handleSearch = async () => {
+    setIsSearching(true);
+    try {
+      const jobsRef = collection(db, "jobs");
+      let searchQuery = query(jobsRef);
+
+      if (jobQuery) {
+        searchQuery = query(
+          jobsRef,
+          where(
+            "keywords",
+            "array-contains-any",
+            jobQuery.toLowerCase().split(" ")
+          )
+        );
+      }
+
+      navigate(`/jobs/search?q=${jobQuery}&location=${locationQuery}`);
+    } catch (error) {
+      console.error("Error searching jobs:", error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSearch();
+  };
 
   useEffect(() => {
     const section = searchParams.get("section");
@@ -26,11 +63,11 @@ const Home: React.FC = () => {
   }, [searchParams, location.key]);
 
   return (
-    <>
+    <main>
       <Element name="home">
         <section
           id="home"
-          className="relative text-white min-h-screen bg-cover bg-center bg-no-repeat py-[148px] scroll-mt-[70px]"
+          className="relative text-white min-h-screen bg-cover bg-center bg-no-repeat py-[148px] px-6 md:px-4 scroll-mt-[70px]"
           style={{ backgroundImage: 'url("/images/bg-skillmatch.jpg")' }}
         >
           <div className="container mx-auto text-center">
@@ -53,7 +90,8 @@ const Home: React.FC = () => {
             </motion.div>
 
             {/* Search Form */}
-            <motion.div
+            <motion.form
+              onSubmit={handleSubmit}
               className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -61,18 +99,26 @@ const Home: React.FC = () => {
             >
               <input
                 type="text"
+                value={jobQuery}
+                onChange={(e) => setJobQuery(e.target.value)}
                 placeholder="Search by job title, keyword, etc."
                 className="px-4 py-3 w-full md:w-2/5 rounded border text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <input
                 type="text"
+                value={locationQuery}
+                onChange={(e) => setLocationQuery(e.target.value)}
                 placeholder="Search by location"
                 className="px-4 py-3 w-full md:w-2/5 rounded border text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <button className="px-6 py-3 bg-primary text-white font-medium rounded transition hover:outline hover:outline-1 hover:outline-white">
-                Search
+              <button
+                type="submit"
+                disabled={isSearching}
+                className="w-full md:w-auto px-6 py-3 bg-primary text-white font-medium rounded transition hover:outline hover:outline-1 hover:outline-white disabled:opacity-50"
+              >
+                {isSearching ? "Searching..." : "Search"}
               </button>
-            </motion.div>
+            </motion.form>
 
             {/* Reviews Section */}
             <motion.div
@@ -132,7 +178,7 @@ const Home: React.FC = () => {
           <ContactSection />
         </section>
       </Element>
-    </>
+    </main>
   );
 };
 

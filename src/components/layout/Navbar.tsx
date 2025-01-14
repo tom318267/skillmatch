@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { handleSignOut } from "../../utils/auth.ts";
 import { auth } from "../../config/firebase.ts";
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onSignOut = async () => {
     try {
@@ -20,7 +21,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-white shadow-md">
-      <div className="container mx-auto py-2 flex items-center justify-between">
+      <div className="container mx-auto py-2 px-6 sm:px-4 flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
           <RouterLink to="/">
@@ -28,14 +29,97 @@ const Navbar: React.FC = () => {
               <img
                 src="/images/skillmatchlogo.svg"
                 alt="SkillMatch Logo"
-                className="h-[100px] w-[100px]"
+                className="h-[60px] w-[60px] md:h-[100px] md:w-[100px]"
               />
             </div>
           </RouterLink>
         </div>
 
-        {/* Links Section */}
-        <div className="hidden md:flex space-x-14">
+        {/* Hamburger Menu Button */}
+        <button
+          className="lg:hidden p-2"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <div className="w-6 h-0.5 bg-primary mb-1.5"></div>
+          <div className="w-6 h-0.5 bg-primary mb-1.5"></div>
+          <div className="w-6 h-0.5 bg-primary"></div>
+        </button>
+
+        {/* Mobile Menu */}
+        <div
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } lg:hidden absolute top-[76px] md:top-[116px] left-0 right-0 bg-white shadow-md z-50`}
+        >
+          <div className="flex flex-col space-y-4 px-6 py-4">
+            <RouterLink
+              to="/"
+              className="text-base font-medium text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </RouterLink>
+            {user && (
+              <RouterLink
+                to="/dashboard"
+                className="text-base font-medium text-primary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Dashboard
+              </RouterLink>
+            )}
+            <RouterLink
+              to="/jobs/all"
+              className="text-base font-medium text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Browse Jobs
+            </RouterLink>
+            <RouterLink
+              to="/blogs"
+              className="text-base font-medium text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Blogs
+            </RouterLink>
+            <RouterLink
+              to="/about-us"
+              className="text-base font-medium text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About Us
+            </RouterLink>
+
+            {/* Auth buttons in mobile menu with desktop styling */}
+            {user ? (
+              <button
+                onClick={() => {
+                  onSignOut();
+                  setIsMenuOpen(false);
+                }}
+                className="px-4 py-2 text-sm font-medium text-secondary border border-secondary rounded transition hover:bg-secondary/10 w-fit"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <div className="flex flex-col space-y-2">
+                <RouterLink to="/login" onClick={() => setIsMenuOpen(false)}>
+                  <button className="px-4 py-2 text-sm font-medium text-secondary border border-secondary rounded transition hover:bg-secondary/10 w-full">
+                    Log In
+                  </button>
+                </RouterLink>
+                <RouterLink to="/signup" onClick={() => setIsMenuOpen(false)}>
+                  <button className="px-4 py-2 text-sm font-medium text-white bg-secondary rounded hover:bg-[#24558a] transition w-full">
+                    Sign Up
+                  </button>
+                </RouterLink>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Desktop Links Section */}
+        <div className="hidden lg:flex space-x-14">
           <>
             <RouterLink
               to="/"
@@ -75,7 +159,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Buttons Section */}
-        <div className="flex space-x-4">
+        <div className="hidden lg:flex space-x-4">
           {user ? (
             <button
               onClick={onSignOut}
