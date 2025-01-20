@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase.ts";
 
@@ -16,6 +16,7 @@ const BlogPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogPost = async () => {
@@ -64,6 +65,14 @@ const BlogPost: React.FC = () => {
 
   return (
     <main className="max-w-4xl mx-auto px-6 md:px-4 py-12">
+      <div className="flex items-center mb-6">
+        <button
+          onClick={() => navigate("/blogs")}
+          className="mr-4 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+        >
+          ← Back to Blogs
+        </button>
+      </div>
       <article className="prose prose-lg mx-auto">
         <img
           src={post.imageUrl}
