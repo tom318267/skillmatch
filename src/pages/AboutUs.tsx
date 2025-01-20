@@ -26,7 +26,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <main className="min-h-screen px-6 sm:px-0">
+    <main className="min-h-screen px-6 md:px-4 ">
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0 }}

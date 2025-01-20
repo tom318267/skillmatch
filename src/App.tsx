@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard.tsx";
 import Blogs from "./pages/Blogs.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
 import JobsSearchResults from "./pages/JobsSearchResults.tsx";
+import BlogPost from "./pages/BlogPost.tsx";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const App: React.FC = () => {
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/jobs/all" element={<MainJobsPage />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about-us" element={<AboutUs />} />
           </Routes>
