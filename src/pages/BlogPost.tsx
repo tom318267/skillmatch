@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase.ts";
 
-interface BlogPost {
+interface BlogPostType {
   id: string;
   title: string;
   content: string;
@@ -14,7 +14,7 @@ interface BlogPost {
 
 const BlogPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [post, setPost] = useState<BlogPost | null>(null);
+  const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const BlogPost: React.FC = () => {
           setPost({
             id: docSnap.id,
             ...docSnap.data(),
-          } as BlogPost);
+          } as BlogPostType);
         }
       } catch (error) {
         console.error("Error fetching blog post:", error);
