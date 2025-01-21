@@ -27,7 +27,9 @@ const Navbar: React.FC = () => {
           <RouterLink to="/">
             <div className="flex-shrink-0">
               <img
-                src="/images/skillmatchlogo.svg"
+                src="/images/skillmatchlogo-mobile.svg"
+                srcSet="/images/skillmatchlogo-mobile.svg 60w, /images/skillmatchlogo.svg 100w"
+                sizes="(max-width: 768px) 60px, 100px"
                 alt="SkillMatch Logo"
                 className="h-[60px] w-[60px] md:h-[100px] md:w-[100px]"
               />
