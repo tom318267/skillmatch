@@ -3,7 +3,7 @@ import React from "react";
 const HowItWorksSection: React.FC = () => {
   const steps = [
     {
-      img: "/images/profile3.svg",
+      img: "/images/cprofile.png",
       alt: "Create profile and add skills",
       title: "Create a profile and add your skills",
       description:
@@ -11,7 +11,7 @@ const HowItWorksSection: React.FC = () => {
       delay: "200",
     },
     {
-      img: "/images/job.svg",
+      img: "/images/searchjob.png",
       alt: "Get matched with job opportunities",
       title: "Get matched with top jobs",
       description:
@@ -19,7 +19,7 @@ const HowItWorksSection: React.FC = () => {
       delay: "400",
     },
     {
-      img: "/images/apply.svg",
+      img: "/images/apply.png",
       alt: "Apply directly to top companies",
       title: "Apply directly to top companies",
       description:
@@ -57,7 +57,7 @@ const HowItWorksSection: React.FC = () => {
               <img
                 src={step.img}
                 alt={step.alt}
-                className="w-40 md:w-52 h-52 mb-6"
+                className="w-40 md:w-52 h-52 mb-6 object-contain"
                 loading="lazy"
                 width="208"
                 height="208"
