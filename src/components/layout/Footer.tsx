@@ -11,9 +11,9 @@ const Footer: React.FC = () => {
           <div>
             <Link to="/" className="inline-block mb-4">
               <img
-                src="/images/skillwhite.svg"
+                src="/images/skillwhite.png"
                 alt="Company Logo"
-                className="h-18 w-auto"
+                className="h-[100px] w-[100px] object-contain"
               />
             </Link>
             <p className="text-white">
