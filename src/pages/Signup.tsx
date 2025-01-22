@@ -102,18 +102,15 @@ const Signup: React.FC = () => {
           <img
             src="/images/smlogo2.png"
             alt="SkillMatch Logo"
-            className="mx-auto h-20 w-auto"
+            className="mx-auto h-16 md:h-20 w-auto"
           />
-          <h1 className="mt-6 text-center text-3xl font-semibold text-gray-900">
+          <h1 className="mt-4 mb-12 text-center text-3xl font-semibold text-gray-900">
             Create your account
           </h1>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Join SkillMatch today
-          </p>
         </header>
 
         {/* Form */}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="mt-12 space-y-6" onSubmit={handleSubmit}>
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
               {error}
