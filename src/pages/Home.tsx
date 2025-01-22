@@ -67,7 +67,7 @@ const Home: React.FC = () => {
       <Element name="home">
         <section
           id="home"
-          className="relative text-white bg-cover bg-center bg-no-repeat py-20 md:py-[148px] px-6 md:px-4"
+          className="relative text-white bg-cover bg-center bg-no-repeat py-20 md:py-[148px] px-6 md:px-4 scroll-mt-[70px]"
           style={{ backgroundImage: 'url("/images/bg-skillmatch.jpg")' }}
         >
           <div className="container mx-auto text-center">
@@ -159,22 +159,22 @@ const Home: React.FC = () => {
         </section>
       </Element>
       <Element name="trusted">
-        <section id="trusted" className="scroll-mt-[70px]">
+        <section id="trusted">
           <TrustedBySection />
         </section>
       </Element>
       <Element name="howItWorks">
-        <section id="howItWorks" className="scroll-mt-20">
+        <section id="howItWorks">
           <HowItWorksSection />
         </section>
       </Element>
       <Element name="categories">
-        <section id="categories" className="scroll-mt-[70px]">
+        <section id="categories">
           <CategoriesSection />
         </section>
       </Element>
       <Element name="contact">
-        <section id="contact" className="scroll-mt-[70px]">
+        <section id="contact">
           <ContactSection />
         </section>
       </Element>
