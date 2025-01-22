@@ -67,7 +67,7 @@ const Login: React.FC = () => {
         {/* Header */}
         <div>
           <img
-            src="/images/skillmatchlogo.svg"
+            src="/images/smlogo2.png"
             alt="SkillMatch Logo"
             className="mx-auto h-16 md:h-20 w-auto"
           />

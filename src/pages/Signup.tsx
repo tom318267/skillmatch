@@ -100,7 +100,7 @@ const Signup: React.FC = () => {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
         <header>
           <img
-            src="/images/skillmatchlogo.svg"
+            src="/images/smlogo2.png"
             alt="SkillMatch Logo"
             className="mx-auto h-20 w-auto"
           />
