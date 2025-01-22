@@ -67,7 +67,7 @@ const Home: React.FC = () => {
       <Element name="home">
         <section
           id="home"
-          className="relative text-white min-h-screen bg-cover bg-center bg-no-repeat py-[148px] px-6 md:px-4 scroll-mt-[70px]"
+          className="relative text-white bg-cover bg-center bg-no-repeat py-20 md:py-[148px] px-6 md:px-4"
           style={{ backgroundImage: 'url("/images/bg-skillmatch.jpg")' }}
         >
           <div className="container mx-auto text-center">
