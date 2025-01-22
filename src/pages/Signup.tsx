@@ -78,6 +78,8 @@ const Signup: React.FC = () => {
       toast.success("Account created successfully!");
       navigate("/dashboard");
     } catch (err: any) {
+      toast.dismiss();
+
       const errorMessage =
         err.code === "auth/email-already-in-use"
           ? "Email already in use"
