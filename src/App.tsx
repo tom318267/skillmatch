@@ -16,6 +16,7 @@ import Blogs from "./pages/Blogs.tsx";
 import AboutUs from "./pages/AboutUs.tsx";
 import JobsSearchResults from "./pages/JobsSearchResults.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
+import NotFound from "./components/NotFound.tsx";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -49,6 +50,7 @@ const App: React.FC = () => {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </div>
