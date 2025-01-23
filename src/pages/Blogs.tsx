@@ -71,6 +71,8 @@ const Blogs: React.FC = () => {
                   src={post.imageUrl}
                   alt={post.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="p-6">

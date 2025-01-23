@@ -1,13 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useLocation, useSearchParams, useNavigate } from "react-router-dom";
 import { Element } from "react-scroll";
-import TrustedBySection from "../components/TrustedBySection.tsx";
-import HowItWorksSection from "../components/HowItWorksSection.tsx";
-import CategoriesSection from "../components/CategoriesSection.tsx";
-import ContactSection from "../components/ContactSection.tsx";
 import { collection, query, where } from "firebase/firestore";
 import { db } from "../config/firebase.ts";
+
+// Lazy load components
+const TrustedBySection = React.lazy(
+  () => import("../components/TrustedBySection.tsx")
+);
+const HowItWorksSection = React.lazy(
+  () => import("../components/HowItWorksSection.tsx")
+);
+const CategoriesSection = React.lazy(
+  () => import("../components/CategoriesSection.tsx")
+);
+const ContactSection = React.lazy(
+  () => import("../components/ContactSection.tsx")
+);
 
 const Home: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -158,26 +168,35 @@ const Home: React.FC = () => {
           </div>
         </section>
       </Element>
-      <Element name="trusted">
-        <section id="trusted">
-          <TrustedBySection />
-        </section>
-      </Element>
-      <Element name="howItWorks">
-        <section id="howItWorks">
-          <HowItWorksSection />
-        </section>
-      </Element>
-      <Element name="categories">
-        <section id="categories">
-          <CategoriesSection />
-        </section>
-      </Element>
-      <Element name="contact">
-        <section id="contact">
-          <ContactSection />
-        </section>
-      </Element>
+
+      <Suspense
+        fallback={
+          <div className="h-40 flex items-center justify-center">
+            Loading...
+          </div>
+        }
+      >
+        <Element name="trusted">
+          <section id="trusted">
+            <TrustedBySection />
+          </section>
+        </Element>
+        <Element name="howItWorks">
+          <section id="howItWorks">
+            <HowItWorksSection />
+          </section>
+        </Element>
+        <Element name="categories">
+          <section id="categories">
+            <CategoriesSection />
+          </section>
+        </Element>
+        <Element name="contact">
+          <section id="contact">
+            <ContactSection />
+          </section>
+        </Element>
+      </Suspense>
     </main>
   );
 };

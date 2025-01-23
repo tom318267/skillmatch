@@ -79,6 +79,7 @@ const AboutUs = () => {
         <img
           src="/images/workplace.jpg"
           alt="Team Collaboration"
+          loading="lazy"
           className="w-full h-[500px] object-cover rounded-lg shadow-xl"
         />
       </motion.div>
@@ -149,7 +150,7 @@ const AboutUs = () => {
                 type: "spring",
                 damping: 20,
                 stiffness: 40,
-                delay: index * 0.2,
+                delay: index * 0.1,
               }}
               whileHover={{ y: -10 }}
             >
@@ -157,6 +158,7 @@ const AboutUs = () => {
                 <img
                   src={member.image}
                   alt={member.name}
+                  loading="lazy"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />
               </div>
