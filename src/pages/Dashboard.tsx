@@ -26,7 +26,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <main className="min-h-screen py-8">
+    <main className="min-h-screen py-8 px-6 md:px-4">
       <header className="mb-8 container mx-auto">
         <h1 className="text-4xl font-semibold text-primary mb-2">Dashboard</h1>
         <p className="text-gray-600 text-lg">
