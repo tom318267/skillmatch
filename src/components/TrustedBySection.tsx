@@ -2,7 +2,7 @@ import React from "react";
 
 const TrustedBySection: React.FC = () => {
   return (
-    <section className="bg-primary text-white py-[148px] px-6 sm:px-0">
+    <section className="bg-primary text-white py-[148px] px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto text-center">
         <h2
           className="text-xl font-medium mb-[75px]"

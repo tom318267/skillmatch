@@ -10,7 +10,6 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
     toast.success("Message sent successfully!");
     setFormData({ name: "", email: "", message: "" });
   };
@@ -25,8 +24,8 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col bg-geo bg-cover bg-center items-center justify-center min-h-screen py-[148px]">
-      <div className="max-w-4xl w-full px-4 sm:px-6 lg:px-8">
+    <section className="bg-geo bg-cover bg-center py-[148px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
@@ -47,7 +46,7 @@ const Contact: React.FC = () => {
           data-aos="fade-up"
           data-aos-delay="200"
           data-aos-duration="1000"
-          className="bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-10 border border-secondary/10 hover:shadow-2xl hover:scale-[1.01] transition-all duration-300"
+          className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md rounded-xl shadow-xl p-10 border border-secondary/10 hover:shadow-2xl hover:scale-[1.01] transition-all duration-300"
         >
           <form onSubmit={handleSubmit} className="space-y-8">
             <div>

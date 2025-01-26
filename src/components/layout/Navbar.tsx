@@ -20,8 +20,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="container mx-auto py-2 px-6 sm:px-4 flex items-center justify-between">
+    <nav className="bg-white shadow-md w-full">
+      <div className="container mx-auto py-2 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo Section */}
         <div className="flex items-center">
           <RouterLink to="/">

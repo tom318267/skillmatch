@@ -29,7 +29,10 @@ const HowItWorksSection: React.FC = () => {
   ];
 
   return (
-    <section id="howItWorks" className="bg-white py-[148px] px-6 sm:px-0">
+    <section
+      id="howItWorks"
+      className="bg-white py-[148px] px-4 sm:px-6 lg:px-8"
+    >
       <div className="container mx-auto text-center">
         <h2
           data-aos="fade-up"

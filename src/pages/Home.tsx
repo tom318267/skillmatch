@@ -77,10 +77,10 @@ const Home: React.FC = () => {
       <Element name="home">
         <section
           id="home"
-          className="relative text-white bg-cover bg-center bg-no-repeat py-20 md:py-[148px] px-6 md:px-4 scroll-mt-[70px]"
+          className="relative text-white bg-cover bg-center bg-no-repeat py-20 md:py-[148px] scroll-mt-[70px]"
           style={{ backgroundImage: 'url("/images/bg-skillmatch.jpg")' }}
         >
-          <div className="container mx-auto text-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             {/* Title Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
