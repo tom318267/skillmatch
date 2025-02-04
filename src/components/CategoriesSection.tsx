@@ -76,7 +76,7 @@ const CategoriesSection: React.FC = () => {
               data-aos="fade-up"
               data-aos-delay={String(index * 100)}
               onClick={() => handleCategoryClick(category.title)}
-              className="bg-white h-[373px] rounded-lg p-6 flex flex-col items-center justify-center 
+              className="bg-white h-[373px] rounded-lg p-4 sm:p-6 flex flex-col items-center justify-center 
               transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl
               cursor-pointer"
             >
@@ -88,10 +88,10 @@ const CategoriesSection: React.FC = () => {
                 width="102"
                 height="102"
               />
-              <h3 className="text-[32px] font-medium text-primary mb-2 w-[290px] capitalize">
+              <h3 className="text-[32px] font-medium text-primary mb-2 capitalize px-2">
                 {category.title}
               </h3>
-              <p className="text-gray-500 text-center w-[290px]">
+              <p className="text-gray-500 text-center px-2">
                 {category.description}
               </p>
             </div>
