@@ -4,6 +4,7 @@ import { Job } from "../services/jobService.ts";
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../config/firebase.ts";
+import { toast } from "react-hot-toast";
 
 const JobsPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -15,6 +16,9 @@ const JobsPage: React.FC = () => {
   const [filters, setFilters] = useState({
     location: "",
   });
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const category = searchParams.get("category");
 
@@ -111,6 +115,35 @@ const JobsPage: React.FC = () => {
     fetchJobs();
   }, [category]);
 
+  const handleApply = (job: Job) => {
+    setSelectedJob(job);
+    setShowModal(true);
+  };
+
+  const handleSubmitApplication = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const loadingToast = toast.loading("Submitting your application...");
+
+      // Simulate API call with timeout
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      toast.dismiss(loadingToast);
+      toast.success("Application submitted successfully!");
+      setShowModal(false);
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Failed to submit application. Please try again.");
+      console.error("Error submitting application:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -200,9 +233,7 @@ const JobsPage: React.FC = () => {
                         {new Date(job.postedDate).toLocaleDateString()}
                       </span>
                       <button
-                        onClick={() => {
-                          console.log(`Applied to job ${job.id}`);
-                        }}
+                        onClick={() => handleApply(job)}
                         className="mt-auto bg-secondary hover:bg-[#24558a] text-white font-medium px-4 py-2 rounded transition-colors"
                       >
                         Apply Now
@@ -212,6 +243,66 @@ const JobsPage: React.FC = () => {
                 </div>
               ))
             )}
+          </div>
+        )}
+
+        {showModal && selectedJob && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg p-6 max-w-md w-full">
+              <h2 className="text-xl font-semibold mb-4">
+                Apply for {selectedJob.title}
+              </h2>
+              <p className="text-gray-600 mb-4">at {selectedJob.company}</p>
+
+              <form className="space-y-4" onSubmit={handleSubmitApplication}>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="resume"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Resume
+                  </label>
+                  <input
+                    type="file"
+                    id="resume"
+                    accept=".pdf,.doc,.docx"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-secondary"
+                    required
+                  />
+                </div>
+                <div className="flex gap-3 justify-end mt-6">
+                  <button
+                    type="button"
+                    onClick={() => setShowModal(false)}
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                    disabled={isSubmitting}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-secondary text-white rounded hover:bg-[#24558a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Application"}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         )}
       </div>
